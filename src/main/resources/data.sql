@@ -1,0 +1,1 @@
+INSERT IGNORE INTO users (id, account, password, name, branch_id, department_id, is_stopped) VALUES (1, 'admin', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', '管理者', 1, 1, 0);
