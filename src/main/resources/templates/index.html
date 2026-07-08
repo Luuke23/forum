@@ -5,7 +5,53 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>掲示板</title>
 	</head>
-	<body>
-		<p>Hello, world!</p>
+	<body> 
+		<header>
+			<div class="header-contents">
+				<h1>掲示板</h1>
+				<form class="logout" th:action="@{/logout}" th:method="post">
+					<input type="submit" value="ログアウト">
+				</form>
+			</div>
+			<div class="menu">
+				<nav>
+					<ul>
+						<li><a th:href="@{/message/new}">新規投稿</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<main>
+			<div class="main-contents">
+				<div th:each="message : ${messages}">
+					<div class="message-icon">
+						<strong th:text="${message.title}"></strong>
+						<div class="content" th:text="${message.text}"></div>
+						<div class="message-info">
+							投稿者：<span th:text="${message.user.name}"></span>
+							/カテゴリ：<span th:text="${message.category}"></span>
+							/投稿日時：<span th:text="${#dates.format(message.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+						</div>
+						
+						<!--投稿削除ボタン-->
+						<div th:if="${loginUser.user.id == message.user.id}">
+							<form class="delete-button" th:action="@{/message/delete/{id}(id=${message.id})}" th:method="post">
+								<!-- CSRFトークン -->
+		                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		                        <input type="hidden" name="userId" th:value="${message.user.id}">
+		                        <input type="submit" value="削除">
+							</form>
+						</div>
+						<!--投稿編集ボタン-->
+						<form class="delete-button" th:action="@{/message/edit/{id}(id=${message.id})}" th:method="get">
+							<!-- CSRFトークン -->
+	                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	                        <input type="hidden" name="userId" th:value="${message.user.id}">
+	                        <input type="submit" value="編集">
+						</form>
+					</div>
+				</div>
+			</div>
+		</main>
 	</body>
 </html>

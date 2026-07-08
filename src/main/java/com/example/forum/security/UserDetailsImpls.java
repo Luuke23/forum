@@ -11,10 +11,14 @@ import com.example.forum.entity.User;
 
 public class UserDetailsImpls implements UserDetails{
 	private final User user;
+	private final Integer id;
+	private final String account;
 	private final Collection<? extends GrantedAuthority> authorities;
 	
 	public UserDetailsImpls(User user) {
 		this.user = user;
+		this.id = user.getId();
+		this.account = user.getAccount();
 		
 		if(user.getDepartmentId() == 1) {
 			//部署IDが1の場合は管理者権限を付与
