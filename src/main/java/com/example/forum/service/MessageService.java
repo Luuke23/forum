@@ -17,7 +17,7 @@ public class MessageService {
 	@Autowired
 	MessageRepository messageRepository;
 	
-	//新規投稿
+	//新規投稿・投稿編集
 	public void saveMessage(MessageForm messageForm) {
 		Message messageEntity = convetFormToEntity(messageForm);
 		messageRepository.save(messageEntity);
