@@ -1,0 +1,254 @@
+/* ==========================================================================
+   全体設定 & 共通パーツ
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    background-color: #f5f7fa;
+    color: #333333;
+    line-height: 1.6;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #2d3748;
+    text-align: center;
+}
+
+/* ==========================================================================
+   ヘッダー・フッター（全画面共通）
+   ========================================================================== */
+/* ホーム画面以外の画面上部ヘッダー */
+.header-contents, .login-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.login-header {
+    padding: 30px 20px;
+}
+
+/* フッター（戻るボタン用エリア） */
+.footer-contents {
+    max-width: 500px;
+    margin: 20px auto 50px auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   メインレイアウト（ホーム画面とフォーム画面の分離）
+   ========================================================================== */
+/* 1. ホーム画面専用（幅広: 800px） */
+header, main {
+    max-width: 800px;
+    margin: 0 auto;
+}
+main {
+    margin-top: 30px;
+    padding: 0 20px;
+}
+main .main-contents {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 2. 各種フォーム画面専用（中央寄せ幅狭: 500px） */
+body > .main-contents {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   ホーム画面専用：ヘッダー＆投稿カード
+   ========================================================================== */
+header .header-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}
+header .header-contents {
+    box-shadow: none;
+    margin-bottom: 0;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #edf2f7;
+}
+header .header-contents h1 {
+    font-size: 1.5rem;
+    color: #2d3748;
+}
+.menu {
+    display: flex;
+    gap: 15px;
+    padding: 10px 0;
+}
+.menu ul { list-style: none; display: flex; }
+.menu a {
+    text-decoration: none;
+    color: #4a5568;
+    font-size: 0.95rem;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.menu a:hover { background-color: #edf2f7; color: #2b6cb0; }
+
+/* 投稿カード */
+.message-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+}
+.message-title { display: block; font-size: 1.2rem; color: #1a202c; margin-bottom: 10px; }
+.message-text { font-size: 1rem; color: #4a5568; white-space: pre-wrap; margin-bottom: 15px; }
+.message-info {
+    font-size: 0.85rem; color: #718096; background-color: #f7fafc;
+    padding: 8px 12px; border-radius: 4px; display: flex; flex-wrap: wrap; gap: 10px;
+}
+.action-area {
+    display: flex; gap: 10px; justify-content: flex-end;
+    margin-top: 15px; border-top: 1px dashed #e2e8f0; padding-top: 15px;
+}
+.action-button input[type="submit"] { width: auto !important; padding: 6px 16px; font-size: 0.9rem; }
+.btn-edit input[type="submit"] { background-color: #3182ce; color: #ffffff; }
+.btn-delete input[type="submit"] { background-color: #edf2f7; color: #4a5568; border: 1px solid #cbd5e0; }
+.btn-delete input[type="submit"]:hover { background-color: #fed7d7; color: #9b2c2c; border-color: #feb2b2; }
+
+/* ==========================================================================
+   フォーム専用：コンテナと入力要素（ここが縦並びの肝です）
+   ========================================================================== */
+.login-form, .new-form-area {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+}
+
+/* ラベルをブロック化して強制改行 */
+.login-form label, .new-form-area label {
+    display: block;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #4a5568;
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+.login-form label:first-of-type, .new-form-area label:first-of-type {
+    margin-top: 0;
+}
+
+/* すべての入力フォームを横幅100%にして縦に並べる */
+.login-form input[type="text"],
+.login-form input[type="password"],
+.new-form-area input[type="text"],
+.new-form-area input[type="password"],
+.new-form-area select,
+.new-form-area textarea {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #2d3748;
+    margin-bottom: 5px;
+    transition: all 0.2s;
+}
+
+/* フォーカス時のエフェクト */
+.login-form input:focus, .new-form-area input:focus, 
+.new-form-area select:focus, .new-form-area textarea:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+textarea.text-box {
+    height: 120px;
+    resize: vertical;
+}
+
+/* ==========================================================================
+   エラーメッセージ
+   ========================================================================== */
+.login-errorMessages, .errorMessages {
+    background-color: #fff5f5;
+    border-left: 4px solid #e53e3e;
+    color: #c53030;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   ボタン・リンク
+   ========================================================================== */
+input[type="submit"] {
+    display: block;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+/* フォーム内のメインボタン（青） */
+.login-form input[type="submit"],
+.registration-button {
+    width: 100% !important;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #3182ce;
+    color: #ffffff;
+    margin-top: 25px;
+}
+.login-form input[type="submit"]:hover,
+.registration-button:hover {
+    background-color: #2b6cb0;
+}
+
+/* ホーム画面のログアウトボタン（赤） */
+.logout input[type="submit"] {
+    background-color: #e53e3e;
+    color: #ffffff;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+/* 戻るボタン（グレー） */
+.return-button form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #edf2f7;
+    color: #4a5568;
+    border: 1px solid #cbd5e0;
+}
+.return-button form input[type="submit"]:hover {
+    background-color: #e2e8f0;
+}
+
+/* 新規会員登録リンク */
+.new-user { text-align: center; margin-top: 20px; }
+.new-user a { color: #3182ce; text-decoration: none; font-weight: bold; }
+.new-user a:hover { text-decoration: underline; }

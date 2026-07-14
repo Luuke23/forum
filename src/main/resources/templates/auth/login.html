@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{/css/style.css}" rel="styleSheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
     <title>掲示板 ログインページ</title>
 </head>
 <body>
@@ -20,14 +21,11 @@
     <div class="login-form">
         <form th:action="@{/login}" method="post">
             <label>アカウント名</label>
-            <div>
-                <input type="text" name="account" th:value="${account}"/>
-            </div>
+            <input type="text" name="account" th:value="${account}"/>
+            
             <label>パスワード</label>
-            <div>
-                <input type="password" name="password"/>
-            </div>
-            <br/>
+            <input type="password" name="password"/>
+            
             <input type="submit" value="ログイン"/>
         </form>
     </div>
