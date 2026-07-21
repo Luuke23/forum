@@ -130,7 +130,7 @@ header .header-contents h1 {
 .btn-delete input[type="submit"]:hover { background-color: #fed7d7; color: #9b2c2c; border-color: #feb2b2; }
 
 /* ==========================================================================
-   フォーム専用：コンテナと入力要素（ここが縦並びの肝です）
+   フォーム専用：コンテナと入力要素
    ========================================================================== */
 .login-form, .new-form-area {
     background-color: #ffffff;

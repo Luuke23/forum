@@ -9,7 +9,7 @@
 		<header>
 			<div class="header-container">
 				<div class="header-contents">
-					<h1>掲示板</h1>
+					<h1><a th:href="@{/}">掲示板</a></h1>
 					<form class="logout" th:action="@{/logout}" th:method="post">
 						<input type="submit" value="ログアウト">
 					</form>
@@ -29,13 +29,21 @@
 			</div>
 		</header>
 		<main>
+			<div class="search-form">
+				<form method="get" th:action="@{/}">
+					<div class="input-group">
+						<input type="text" name="keyword" th:value="${keyword}">
+						<button type="submit">検索</button>
+					</div>
+				</form>
+			</div>
 			<div class="main-contents">
 				<div class="message-card" th:each="message : ${messages}">
 					<strong class="message-title" th:text="${message.title}"></strong>
 					<div class="message-text" th:text="${message.text}"></div>
 					<div class="message-info">
 						<span>投稿者：<span th:text="${message.user.account}"></span></span>
-						<span>カテゴリ：<span th:text="${message.category}"></span></span>
+						<span>カテゴリ：<a th:href="@{/(category = ${message.category})}"><span th:text="${message.category}"></span></a></span>
 						<span>投稿日時：<span th:text="${#dates.format(message.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span></span>
 					</div>
 					

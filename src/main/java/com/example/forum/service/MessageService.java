@@ -37,6 +37,20 @@ public class MessageService {
 		return convertEntityToForm(result);
 	}
 	
+	//keyword検索
+	public List<UserMessageForm> findByKeyWord(String keyword){
+		List<Message> results = messageRepository.findByMainTextLike(keyword);
+		
+		return convertEntityToForm(results);
+	}
+	
+	//category検索
+	public List<UserMessageForm> findByCategory(String keyword){
+		List<Message> results = messageRepository.findByCategoryLike(keyword);
+		
+		return convertEntityToForm(results);
+	}
+	
 	//投稿削除
 	public void deleteMessage(Integer id) {
 		messageRepository.deleteById(id);
