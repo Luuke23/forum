@@ -86,6 +86,7 @@ public class MessageController {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.formModel", result);
             redirectAttributes.addFlashAttribute("formModel", messageForm);
+            redirectAttributes.addAttribute("userId", loginUser.getUser().getId());
             return "redirect:/message/edit/" + id;
         }
         
